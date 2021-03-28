@@ -1,16 +1,26 @@
 import requests, json
-
+from PIL import Image
 
 def main():
-	with open('Keys.json','w') as file:
-		json.dump({
-			"NASA" : "hTH1zP3UYNNeHE1yPx6ySW9y0X8daK1XIWJnba2b",
-		}, file)
-
+	#Load current API keys
 	with open('Keys.json','r') as file:
 		keys = json.load(file)
-	#r = requests.get('')
-	print(keys)
+	#Greet User
+	print("Welcome to Python API Wrapper.")
+	print("	Available Commands: ")
+
+	APOD = get_APOD(keys['NASA'])
+	
+	for key in APOD.keys():
+		print(key+': '+APOD[key])
+
+	
+def get_APOD(NASA_key):
+	print('Getting Astronomy Photo of the Day...')
+	r = requests.get('https://api.nasa.gov/planetary/apod'+'?api_key='+NASA_key)
+	print("Request status code " + str(r.status_code))
+	APOD = r.json()
+	return APOD
 
 def add_key(key, value):
 	with open('Keys.json','r') as file:
