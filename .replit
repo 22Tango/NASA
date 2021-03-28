@@ -1,0 +1,3 @@
+run="python __main__.py"
+language="python3"
+onBoot="echo Launching Replit Scripts"
