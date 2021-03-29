@@ -1,1 +1,1 @@
-# Python Frunctions for NASA API
+# Python Functions for NASA API
